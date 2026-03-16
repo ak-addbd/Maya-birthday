@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffc7de" />
+  <title>Happy Birthday Maya</title>
+  <style>
+    :root {
+      --bg1: #ffd6e8;
+      --bg2: #ffc2dd;
+      --bg3: #ffe7f2;
+      --card: rgba(255, 255, 255, 0.26);
+      --card-border: rgba(255, 255, 255, 0.45);
+      --text: #ffffff;
+      --shadow: rgba(177, 73, 118, 0.18);
+      --pink: #ff5fa2;
+      --pink-dark: #ff3f8a;
+      --yellow: #ffe27a;
+      --blue: #9fd7ff;
+      --mint: #c5ffd8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.45), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.3), transparent 24%),
+        linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .glow {
+      position: absolute;
+      inset: auto;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .glow.one {
+      width: 240px;
+      height: 240px;
+      background: #fff2b7;
+      top: -30px;
+      left: -30px;
+    }
+
+    .glow.two {
+      width: 260px;
+      height: 260px;
+      background: #ffc8e3;
+      right: -40px;
+      bottom: -20px;
+    }
+
+    .scene {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 980px);
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 32px;
+      box-shadow: 0 20px 60px var(--shadow);
+      padding: clamp(20px, 4vw, 42px);
+      text-align: center;
+    }
+
+    .love {
+      font-size: clamp(1.35rem, 3vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    .birthday {
+      font-size: clamp(2.2rem, 8vw, 5.8rem);
+      line-height: 0.95;
+      font-weight: 900;
+      text-shadow: 0 10px 30px rgba(197, 50, 116, 0.22);
+      margin-bottom: 14px;
+    }
+
+    .maya {
+      display: block;
+      color: #fff8fc;
+      text-shadow: 0 6px 20px rgba(255, 77, 154, 0.25);
+    }
+
+    .subtitle {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: clamp(1rem, 2.6vw, 1.4rem);
+      line-height: 1.6;
+      opacity: 0.98;
+      margin-bottom: 28px;
+    }
+
+    .penguin-row {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      gap: clamp(8px, 2vw, 26px);
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .penguin {
+      position: relative;
+      width: clamp(95px, 18vw, 145px);
+      height: clamp(130px, 24vw, 190px);
+      animation: dance 1.7s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+
+    .penguin:nth-child(2) { animation-delay: 0.2s; }
+    .penguin:nth-child(3) { animation-delay: 0.4s; }
+
+    .hat {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 22px solid transparent;
+      border-right: 22px solid transparent;
+      border-bottom: 50px solid var(--pink);
+      z-index: 3;
+    }
+
+    .hat::before {
+      content: "";
+      position: absolute;
+      top: 49px;
+      left: -24px;
+      width: 48px;
+      height: 8px;
+      border-radius: 999px;
+      background: white;
+    }
+
+    .hat::after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.15);
+    }
+
+    .body {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 118px;
+      background: #24242b;
+      border-radius: 48px 48px 42px 42px;
+      box-shadow: inset -8px -8px 0 rgba(255,255,255,0.06);
+    }
+
+    .belly {
+      position: absolute;
+      left: 50%;
+      top: 24px;
+      transform: translateX(-50%);
+      width: 58px;
+      height: 72px;
+      background: #fffafc;
+      border-radius: 28px;
+    }
+
+    .eye {
+      position: absolute;
+      top: 34px;
+      width: 10px;
+      height: 14px;
+      background: #111;
+      border-radius: 50%;
+    }
+
+    .eye.left { left: 27px; }
+    .eye.right { right: 27px; }
+
+    .beak {
+      position: absolute;
+      top: 47px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 14px solid #ffbe55;
+      z-index: 2;
+    }
+
+    .wing {
+      position: absolute;
+      top: 54px;
+      width: 24px;
+      height: 54px;
+      background: #1d1d23;
+      border-radius: 20px;
+    }
+
+    .wing.left {
+      left: -8px;
+      transform: rotate(24deg);
+      animation: wing-left 1.2s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    .wing.right {
+      right: -8px;
+      transform: rotate(-24deg);
+      animation: wing-right 1.2s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    .foot {
+      position: absolute;
+      bottom: -6px;
+      width: 24px;
+      height: 12px;
+      background: #ffb24d;
+      border-radius: 999px;
+    }
+
+    .foot.left { left: 24px; }
+    .foot.right { right: 24px; }
+
+    .cake-wrap {
+      position: absolute;
+      right: -8px;
+      bottom: 34px;
+      animation: cake-bob 1.6s ease-in-out infinite;
+    }
+
+    .cake-plate {
+      width: 42px;
+      height: 8px;
+      border-radius: 999px;
+      background: #ffffff;
+      margin: 0 auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .cake-piece {
+      position: relative;
+      width: 34px;
+      height: 22px;
+      margin: 0 auto 2px;
+      background: linear-gradient(to bottom, #ff92bd 0 38%, #fff2b3 38% 70%, #ff92bd 70% 100%);
+      border-radius: 8px 8px 5px 5px;
+    }
+
+    .cake-piece::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 10px;
+      background: #7fd6ff;
+      border-radius: 5px;
+    }
+
+    .cake-piece::after {
+      content: "";
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 10px;
+      background: #ffe58c;
+      clip-path: polygon(50% 0%, 62% 35%, 100% 48%, 70% 64%, 78% 100%, 50% 78%, 22% 100%, 30% 64%, 0% 48%, 38% 35%);
+    }
+
+    .floating-heart,
+    .confetti {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .floating-heart {
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      transform: rotate(45deg);
+      animation: floatUp linear infinite;
+      border-radius: 2px;
+    }
+
+    .floating-heart::before,
+    .floating-heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+    }
+
+    .floating-heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .floating-heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    .confetti {
+      width: 10px;
+      height: 18px;
+      border-radius: 999px;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    .bottom-note {
+      margin-top: 18px;
+      font-size: clamp(0.92rem, 2vw, 1.1rem);
+      opacity: 0.92;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(115vh) rotate(45deg) scale(0.7);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      100% {
+        transform: translateY(-20vh) rotate(45deg) scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(115vh) rotate(360deg);
+        opacity: 0.65;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes dance {
+      0%, 100% { transform: rotate(-4deg) translateY(0); }
+      25% { transform: rotate(4deg) translateY(-4px); }
+      50% { transform: rotate(-2deg) translateY(0); }
+      75% { transform: rotate(5deg) translateY(-6px); }
+    }
+
+    @keyframes wing-left {
+      0%, 100% { transform: rotate(24deg); }
+      50% { transform: rotate(45deg); }
+    }
+
+    @keyframes wing-right {
+      0%, 100% { transform: rotate(-24deg); }
+      50% { transform: rotate(-45deg); }
+    }
+
+    @keyframes cake-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+
+      .scene {
+        border-radius: 26px;
+        padding: 18px 16px 24px;
+      }
+
+      .subtitle {
+        margin-bottom: 22px;
+      }
+
+      .penguin-row {
+        gap: 4px;
+      }
+    }
+
+    @media (max-height: 650px) {
+      body {
+        align-items: start;
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <main class="scene">
+    <div class="love">I love you 🤍</div>
+    <h1 class="birthday">HAPPY BIRTHDAY <span class="maya">MAYA</span></h1>
+    <p class="subtitle">
+      Hope you have the sweetest, cutest, most beautiful birthday ever. You deserve so much happiness today and always ✨🎀🐧
+    </p>
+
+    <section class="penguin-row" aria-label="Dancing birthday penguins">
+      <div class="penguin">
+        <div class="hat"></div>
+        <div class="body">
+          <div class="belly"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="beak"></div>
+          <div class="wing left"></div>
+          <div class="wing right"></div>
+          <div class="foot left"></div>
+          <div class="foot right"></div>
+        </div>
+      </div>
+
+      <div class="penguin">
+        <div class="hat"></div>
+        <div class="body">
+          <div class="belly"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="beak"></div>
+          <div class="wing left"></div>
+          <div class="wing right"></div>
+          <div class="foot left"></div>
+          <div class="foot right"></div>
+        </div>
+      </div>
+
+      <div class="penguin cake-penguin">
+        <div class="hat"></div>
+        <div class="body">
+          <div class="belly"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="beak"></div>
+          <div class="wing left"></div>
+          <div class="wing right"></div>
+          <div class="foot left"></div>
+          <div class="foot right"></div>
+        </div>
+        <div class="cake-wrap">
+          <div class="cake-piece"></div>
+          <div class="cake-plate"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom-note">with love, hearts, cake, and dancing penguins 💕</div>
+  </main>
+
+  <script>
+    const heartCount = window.innerWidth < 640 ? 24 : 42;
+    const confettiCount = window.innerWidth < 640 ? 40 : 70;
+    const confettiColors = ['#ffffff', '#ff69b4', '#ffd1dc', '#ffe066', '#ffc0cb', '#9fd7ff', '#c5ffd8'];
+
+    for (let i = 0; i < heartCount; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 5 + Math.random() * 6 + 's';
+      heart.style.animationDelay = Math.random() * 6 + 's';
+      heart.style.opacity = 0.45 + Math.random() * 0.5;
+      heart.style.transform += ` scale(${0.7 + Math.random() * 0.8})`;
+      document.body.appendChild(heart);
+    }
+
+    for (let i = 0; i < confettiCount; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti';
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.top = -Math.random() * 100 + 'vh';
+      piece.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      piece.style.animationDuration = 4 + Math.random() * 5 + 's';
+      piece.style.animationDelay = Math.random() * 4 + 's';
+      piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(piece);
+    }
+  </script>
+</body>
+</html>
